@@ -41,18 +41,24 @@ namespace _20._101_Ivanov_09
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            
-            var result = Helper.GetContext().Teachers.ToList();
-            result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
-            result = result.OrderBy(x => x.LastName).ToList();
-            if (result.ToList().Count > 0)
+            try
             {
-                LoadData.ItemsSource = null;
-                LoadData.ItemsSource = result.ToList();
+                var result = Helper.GetContext().Teachers.ToList();
+                result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
+                result = result.OrderBy(x => x.LastName).ToList();
+                if (result.ToList().Count > 0)
+                {
+                    LoadData.ItemsSource = null;
+                    LoadData.ItemsSource = result.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Результат поиска отсутствует!");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Результат поиска отсутствует!");
+                MessageBox.Show("Ошибка");
             }
             
         }
