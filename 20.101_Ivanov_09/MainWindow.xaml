@@ -11,7 +11,17 @@
             <RowDefinition Height="198*"/>
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="LoadData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,0"/>
+        <DataGrid x:Name="LoadData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Отчетво" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding  GetNameStatusTeacher}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding  GetNameRole}"/>
+                <DataGridTextColumn Header="Специальность" Binding="{Binding   GetNameSpeciality}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btn_search" Content="Поиск" Margin="0,5,10,0" Grid.Row="1" VerticalAlignment="Top" Height="23" HorizontalAlignment="Right" Width="75" Click="btn_search_Click"/>
 
     </Grid>

@@ -38,5 +38,29 @@ namespace _20._101_Ivanov_09.Entity
         public virtual Speciality Speciality { get; set; }
         public virtual StatusTeacher StatusTeacher { get; set; }
         public virtual SystemUser SystemUser { get; set; }
+
+        public string GetNameRole
+        {
+            get
+            {
+                return this.Role.Title.ToString();
+            }
+        }
+
+        public string GetNameSpeciality
+        {
+            get
+            {
+                return this.Speciality.Title.ToString();
+            }
+        }
+
+        public string GetNameStatusTeacher
+        {
+            get
+            {
+                return this.StatusTeacher.Title.ToString();
+            }
+        }
     }
 }

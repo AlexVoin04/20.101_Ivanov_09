@@ -25,18 +25,12 @@ namespace _20._101_Ivanov_09
         public MainWindow()
         {
             InitializeComponent();
-
-            var role = from rol in Helper.GetContext().Role select new { rol.IdRole, rol.Title};
-
-            var query =
-            from teacher in Helper.GetContext().Teachers
-            orderby teacher.LastName
             
-            select new { teacher.LastName, teacher.FirstName, teacher.Patronymic, teacher.Email, teacher.IdStatusTeachers, teacher.IdRole, teacher.IdSpeciality };
-            //var result = Helper.GetContext().Teachers.ToList();
-            //result = result.OrderBy(x => x.LastName).ToList();
-            //join rol in Helper.GetContext().Role on ro
-            LoadData.ItemsSource = query.ToList();
+            var result = Helper.GetContext().Teachers.ToList();
+            result = result.OrderBy(x => x.LastName).ToList();
+            result = result.OrderBy(x => x.LastName).ToList();
+            
+            LoadData.ItemsSource = result;
         }
 
         private void UpdateData()
@@ -47,17 +41,14 @@ namespace _20._101_Ivanov_09
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            var query =
-            from teacher in Helper.GetContext().Teachers
-            where teacher.IdSpeciality == 1
-            orderby teacher.LastName
-            select new { teacher.LastName, teacher.FirstName, teacher.Patronymic, teacher.Email, teacher.IdStatusTeachers, teacher.IdRole, teacher.IdSpeciality };
-            //var result = Helper.GetContext().Teachers.ToList();
-            //result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
-            if (query.ToList().Count > 0)
+            
+            var result = Helper.GetContext().Teachers.ToList();
+            result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
+            result = result.OrderBy(x => x.LastName).ToList();
+            if (result.ToList().Count > 0)
             {
                 LoadData.ItemsSource = null;
-                LoadData.ItemsSource = query.ToList();
+                LoadData.ItemsSource = result.ToList();
             }
             else
             {
