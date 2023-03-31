@@ -26,26 +26,21 @@ namespace _20._101_Ivanov_09
         {
             InitializeComponent();
             
-            var result = Helper.GetContext().Teachers.ToList();
+            var result = Helper.GetContext().Teachers.ToList();//список учителей
             result = result.OrderBy(x => x.LastName).ToList();
             
-            LoadData.ItemsSource = result;
+            LoadData.ItemsSource = result;//вывод списка учителей
         }
 
-        private void UpdateData()
-        {
-            
-
-        }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var result = Helper.GetContext().Teachers.ToList();
-                result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
-                result = result.OrderBy(x => x.LastName).ToList();
-                if (result.ToList().Count > 0)
+                var result = Helper.GetContext().Teachers.ToList();//получение списка учителей
+                result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();//поиск по специальности
+                result = result.OrderBy(x => x.LastName).ToList();//сортировка
+                if (result.ToList().Count > 0)//проверка на наличие записи
                 {
                     LoadData.ItemsSource = null;
                     LoadData.ItemsSource = result.ToList();
