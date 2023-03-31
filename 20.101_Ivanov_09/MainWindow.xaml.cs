@@ -31,7 +31,7 @@ namespace _20._101_Ivanov_09
             var query =
             from teacher in Helper.GetContext().Teachers
             orderby teacher.LastName
-            join Helper.GetContext().Teachers
+            
             select new { teacher.LastName, teacher.FirstName, teacher.Patronymic, teacher.Email, teacher.IdStatusTeachers, teacher.IdRole, teacher.IdSpeciality };
             //var result = Helper.GetContext().Teachers.ToList();
             //result = result.OrderBy(x => x.LastName).ToList();
@@ -54,8 +54,16 @@ namespace _20._101_Ivanov_09
             select new { teacher.LastName, teacher.FirstName, teacher.Patronymic, teacher.Email, teacher.IdStatusTeachers, teacher.IdRole, teacher.IdSpeciality };
             //var result = Helper.GetContext().Teachers.ToList();
             //result = result.Where(x => x.Speciality.Title == "09.02.07 Информационные системы и программирование").ToList();
-            LoadData.ItemsSource = null;
-            LoadData.ItemsSource = query.ToList();
+            if (query.ToList().Count > 0)
+            {
+                LoadData.ItemsSource = null;
+                LoadData.ItemsSource = query.ToList();
+            }
+            else
+            {
+                MessageBox.Show("Результат поиска отсутствует!");
+            }
+            
         }
     }
 }
