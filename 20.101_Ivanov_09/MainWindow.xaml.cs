@@ -28,7 +28,6 @@ namespace _20._101_Ivanov_09
             
             var result = Helper.GetContext().Teachers.ToList();
             result = result.OrderBy(x => x.LastName).ToList();
-            result = result.OrderBy(x => x.LastName).ToList();
             
             LoadData.ItemsSource = result;
         }
